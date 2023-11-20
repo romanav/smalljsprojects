@@ -1,9 +1,19 @@
-const open = document.getElementById('open')
-const close = document.getElementById('close')
-const container = document.querySelector('.container')
-const home=document.getElementById(`home`)
 
-open.addEventListener('click', () => container.classList.add('show-nav'))
-close.addEventListener('click', () => container.classList.remove('show-nav'))
 
-home.addEventListener('click', () => alert(`home`))
+// Also following library can be used https://github.com/michalsnik/aos
+
+const boxes = document.querySelectorAll('.box')
+window.addEventListener('scroll', checkBoxes)
+
+function checkBoxes(){
+    const triggerBottom = window.innerHeight / 5 * 4
+    boxes.forEach( box => {
+        const boxTop = box.getBoundingClientRect().top
+        if (boxTop < triggerBottom) {
+            box.classList.add('show')
+        }
+        else{
+            box.classList.remove('show')
+        }
+    })
+}
