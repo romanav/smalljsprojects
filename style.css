@@ -1,49 +1,143 @@
 @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
 
+
+:root {
+    --left-gb-color: rgba(87, 84, 236, 0.7);
+    --right-gb-color: rgba(43, 43, 43, 0.8);
+    --left-btn-hover-color: rgba(87, 84, 236, 1);
+    --right-btn-hover-color: rgba(28, 122, 28, 1);
+    --hover-width: 75%;
+    --other-width: 25%;
+    --speed: 1000ms;
+}
+
 * {
     box-sizing: border-box;
 }
 
-body{
-    background-color: #efedd6;
+body {
     font-family: 'Muli', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: center; */
     height: 100vh;
+    overflow: hidden;
     margin: 0;
-    overflow-x: hidden;
 }
 
-h1{
-    margin: 10px;
+h1 {
+    font-size: 4rem;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    white-space: nowrap;
 }
 
-.box{
-    background-color: steelblue;
-    color: white;
+.btn {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 400px;
-    height: 200px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 2px 4px 5px rgba(0,0,0,1);
-    transform: translateX(400%);
-    transition: transform 0.4s ease;
+
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
 }
 
-.box:nth-of-type(even){
-    transform: translateX(-400%);
+.split.left .btn:hover {
+    background-color: var(--left-btn-hover-color);
+    border-color: var(--left-btn-hover-color);
 }
 
-.box.show {
-    transform: translateX(0);
+.split.right .btn:hover {
+    background-color: var(--right-btn-hover-color);
+    border-color: var(--right-btn-hover-color);
 }
 
-.box h2{
-    font-size: 45px;
+.container {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    background: #333;
+}
 
+.split {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.split.left {
+    left: 0;
+    background: url('https://blog.playstation.com/tachyon/2023/10/cd56722db7b991b3d7a33f1bafd55f80d0ac553d.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.split.left::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--left-gb-color);
+}
+
+
+.split.right {
+    right: 0;
+    background: url('https://cdn.mos.cms.futurecdn.net/eH7muHj6y4RyJ5QYkGX8oT-1024-80.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.split.right::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--right-gb-color);
+}
+
+.split.right, 
+.split.left, 
+.split.left::before, 
+.split.right::before {
+    transition: all var(--speed) ease-in-out;
+}
+
+.hover-left .left {
+    width: var(--hover-width);
+}
+
+.hover-left .right {
+    width: var(--other-width);
+}
+
+
+.hover-right .right {
+    width: var(--hover-width);
+}
+
+.hover-right .left {
+    width: var(--other-width);
+}
+
+@media(max-width: 800px){
+    h1{
+        font-size: 2rem;
+        top: 30%;
+    }   
+
+    .btn {
+        padding: 1.2rem;
+        width: 12rem;
+    }
 }
